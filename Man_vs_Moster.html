@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="MyAtt()">
+    <script>
+        var man = 30;
+        var monster = 30;
+        function MyAtt() {
+            matt = window.prompt('"묵:0", "찌:1", "빠:2" 중에 하나를 선택해서 공격합니다.')
+            combatAtt()
+        }
+        function combatAtt() {
+            att = Math.floor(Math.random()*3)
+            if (matt == '0' && att == 0) {
+                console.log('비겼습니다.')
+                MyAtt()
+            } else if (matt == '0' && att == 1) {
+                monster = monster - 2
+                console.log('*적의 남은 체력'+monster+'!')
+                console.log('몬스터에게 2 데미지를 입혔다.')
+                MyAtt()
+            } else if (matt == '0' && att == 2) {
+                man = man - 3
+                console.log('*나의 남은 체력'+man+'...')
+                console.log('나는 몬스터에게 3 데미지를 입었다.')
+                MyAtt()
+            } else if (matt == '1' && att == 1) {
+                console.log('비겼습니다.')
+                MyAtt()
+            } else if (matt == '1' && att == 2) {
+                monster = monster - 1
+                console.log('*적의 남은 체력'+monster+'!')
+                console.log('몬스터에게 1 데미지를 입혔다. 효과는 미미했다.')
+                MyAtt()
+            } else if (matt == '1' && att == 0) {
+                man = man - 2
+                console.log('*나의 남은 체력'+man+'...')
+                console.log('나는 몬스터에게 2 데미지를 입었다.')
+                MyAtt()
+            } else if (matt == '2' && att == 2) {
+                console.log('비겼습니다.')
+                MyAtt()
+            } else if (matt == '2' && att == 0) {
+                monster = monster - 3
+                console.log('*적의 남은 체력'+monster+'!')
+                console.log('몬스터에게 3 데미지를 입혔다. 효과가 엄청났다!')
+                MyAtt()
+            } else if (matt == '2' && att == 1) {
+                man = man - 1
+                console.log('*나의 남은 체력'+man+'...')
+                console.log('나는 몬스터에게 1 데미지를 입었다.')
+                MyAtt()
+            } else if (man <= 0 || monster <= 0) {
+                window.alert('당신이 '+ monster +'점 차이로 졌습니다.')
+            } else if (monster <= 0 || man <= 0) {
+                window.alert('당신이 ' + man + '점 차이로 이꼇습니다!')
+            } else {
+                MyAtt()
+            }
+        }
+    </script>
+</body>
+</html>

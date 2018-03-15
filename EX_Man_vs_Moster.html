@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="Att()">
+
+    <script>
+        var i = { point : 50 }
+        var c = { point : 50 }
+        var para1 = 0, para2 = 0;
+        function Att() {
+            para1 = Number(window.prompt('당신의 차례입니다. 0,1,2 중에 골라보세요.'));
+            para2 = Math.floor(Math.random()*3);
+            rsp(para1,para2);
+        }
+        function rsp(para1,para2){
+            var resArr = [];
+            if ( para1 === 0 ) {
+                if ( para2 === 1 ) {
+                    // com.point -= 2;
+                    resArr.push('c');
+                    resArr.push(2);
+                } else if ( para2 === 2 ) {
+                    // me.point -= 1;
+                    resArr.push('i');
+                    resArr.push(1);
+                }
+            } else if ( para1 === 1 ) {
+                if ( para2 === 0 ) {
+                    resArr.push('i');
+                    resArr.push(2);
+                } else if ( para2 === 2 ) {
+                    resArr.push('c');
+                    resArr.push(2);
+                }
+            } else if ( para1 === 2 ) {
+                if ( para2 === 0 ) {
+                    resArr.push('i');
+                    resArr.push(1);
+                } else if ( para2 === 1 ) {
+                    resArr.push('c');
+                    resArr.push(3);
+                }
+            }
+            return console.log(resArr)
+        }
+        
+
+    </script>
+</body>
+</html>

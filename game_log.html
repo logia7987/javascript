@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+
+        $(function () {
+
+            $("#addJson").click(function () {
+
+                //사람 정보
+                var gamelog = new Array();
+
+                var gameInfo = new Object();
+
+                gameInfo.left = "";
+                gameInfo.right = "";
+
+                gamelog.push(gameInfo);
+
+                //사람, 책 정보를 넣음
+                var totalInfo = new Object();
+
+                var jsonInfo = JSON.stringify(gameInfo);
+                console.log(jsonInfo); //브라우저 f12개발자 모드에서 confole로 확인 가능
+
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <a id="addJson" style="cursor:pointer">확인</a>
+</body>
+
+</html>

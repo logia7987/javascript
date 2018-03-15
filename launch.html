@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="date"></p>
+    
+    <script>     
+        var date = new Date()
+        // var nowHour = date.getHours();
+        var nowHour = Number(window.prompt('시간검색'))
+        document.getElementById('date').textContent = date;
+        if (nowHour >= 19 && nowHour <= 21) {
+            window.alert('도시락 30% 할인!')
+        } else if (nowHour === 9 || nowHour === 15) {
+            window.alert('도시락을 한개를 사시면 한개를 더드립니다.')
+        } else {
+            window.alert('도시락을 사세요.')
+        }
+    </script>
+</body>
+</html>

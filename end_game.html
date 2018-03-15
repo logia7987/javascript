@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>가위 바위 보</h1>
+    <p>컴퓨터와 하는 가위 바위 보 게임입니다. 양쪽 기본 10점이며, 먼저 0이 되면 페배합니다. 게임을 하시려면 아래버튼을 클릭하세요.</p>
+    <button type="button" onclick="myenv.play()">시작</button>
+    <p id="showLog"></p>
+    <h3 id="endgame"></h3>
+    <script>
+        var myenv = {
+            elem: document.getElementById('showLog'),
+            ggb: ['가위', '바위', '보'],
+            play: function () {
+                while (com.point > 0 && me.point > 0) {
+                    playGaBaBo()
+                }
+                this.elem.innerHTML = this.matchLog
+                if (com.point <= 0) {
+                    document.getElementById('endgame').innerHTML = '당신이 컴퓨터를 ' + me.point - com.point + '점 차이로 이겼습니다!'
+                } else if (me.point <= 0) {
+                    document.getElementById('endgame').innerHTML = '당신이 컴퓨터에게 ' + com.point - me.point + '점 차이로 졌습니다..'
+                }
+            },
+            matchLog: ''
+        }
+        var com = {
+            point: 10,
+            randNo: function () {
+                var getVal = Math.floor(Math.random() * 3);
+                return [getVal, myenv.ggb[getVal]];
+            }
+        };
+        var me = {
+            point: 10,
+            randNo: function () {
+                var getVal = window.prompt('0:가위, 1:바위 2:보')
+                getVal = Number(getVal);
+                return [getVal, myenv.ggb[getVal]];
+            }
+        };
+
+        function matchGaBaBo(pa1, pa2) {
+            var res = [];
+            if (pa1 === 0) {
+                if (pa2 === 1) {
+                    res.push('com');
+                    res.push(2);
+                } else if (pa2 === 2) {
+                    res.push('me');
+                    res.push(1);
+                }
+            } else if (pa1 === 1) {
+                if (pa2 === 0) {
+                    res.push('me');
+                    res.push(2);
+                } else if (pa2 === 2) {
+                    res.push('com');
+                    res.push(3);
+                }
+            } else if (pa1 === 2) {
+                if (pa2 === 0) {
+                    res.push('com');
+                    res.push(1);
+                } else if (pa2 === 1) {
+                    res.push('me');
+                    res.push(3);
+                }
+            }
+            return res;
+        };
+
+        function playGaBaBo() {
+            var curLog = '';
+            var comVal = com.randNo();
+            var meVal = me.randNo();
+            var matchRes = matchGaBaBo(comVal[0], meVal[0]);
+            if (matchRes.length === 0) {
+                console.log('Draw')
+            } else {
+                if (matchRes[0] === 'com') {
+                    com.point -= matchRes[1]
+                } else if (matchRes[0] === 'me') {
+                    me.point -= matchRes[1]
+                }
+                curLog += "CPU: " + comVal[1];
+                curLog += ", USER: " + meVal[1] + '로, ';
+                curLog += ' ' + matchRes[0] + ' 이 패하여' + matchRes[1] + '점이 감점';
+                curLog += '  현재 스코어 CPU: ' + com.point + ' USER: ' + me.point + '<br>';
+                console.log(curLog)
+                myenv.matchLog += curLog
+            }
+            // if (com.point <= 0 || me.point <= 0) {
+
+            // }
+
+        }
+    </script>
+</body>
+
+</html>

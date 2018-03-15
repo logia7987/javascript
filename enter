@@ -1,0 +1,9 @@
+[user]
+	email = ansrjsdn7@naver.com
+	name = c22moon
+[core]
+	editor = vim
+	quotepath = false
+[alias]
+	lp = log --pretty=format:\"%h - %an, %ar : %s\"
+	lg = log --graph --full-history --all --color --pretty=format:

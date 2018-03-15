@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var random = Math.floor(Math.random()*100)+1;
+        var el = document.getElementById('demo')
+        var result = true
+        console.log(random)
+        function rangame() {
+            var ans = Number(window.prompt(el.textContent,'1~100사이 숫자를 맞춰보세요.'))
+            console.log(ans)
+            if (ans === random) {
+                // document.getElementById('demo').innerHTML = '정답입니다.'
+                el.textContent = '맞습니다.'
+                result = false
+            } else if (ans > random) {
+                // window.alert('입력값보다 작습니다. 다시해보세요.')
+                el.textContent = '입력값보다 큽니다. 다시해보세요.'
+                result = true
+            } else if (ans < random) {
+                // window.alert('입력값보다 큽니다. 다시해보세요.')
+                el.textContent = '입력값보다 작습니다. 다시해보세요.'
+                result = true
+            }
+        }
+        while(result) {
+            rangame()
+        }
+    </script>
+</body>
+</html>

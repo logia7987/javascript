@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+    <form action="#" id="myForm">
+        <input type="text" name="word">
+        <input type="submit" value="검색">
+    </form>
+    <p id="output"></p>
+    </section>
+    <footer>
+        Java Script Sample
+    </footer>
+    <script>
+        document.getElementById('myForm').onsubmit = function() {
+            var search = document.getElementById('myForm').word.value;
+            document.getElementById('output').textContent = '「'+search+'」 검색중...';
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="makeCal"></div>
+    <script>
+        var make = document.getElementById('makeCal')
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth();
+        var d = date.getDate();
+        var theDate = new Date(y, m, 1);
+        var theDay = theDate.getDay()
+        var last = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (y % 4 && y % 100 != 0 || y % 400 ===0 ) {
+            lastDate = last[1] = 29;
+        }
+        var lastDate = last[m]
+        var row = Math.ceil((theDay + lastDate) / 7);
+        make.innerHTML += '<h1>'+ y + '년 ' + (m+1) + '월'+'</h1>';
+        var cal = '<table>';
+        cal += '<tr>';
+        cal += '<th>일</th>';
+        cal += '<th>월</th>';
+        cal += '<th>화</th>';
+        cal += '<th>수</th>';
+        cal += '<th>목</th>';
+        cal += '<th>금</th>';
+        cal += '<th>토</th>';
+        cal += '</tr>';
+        var dNum = 1;
+        for (var i = 1; i <= row; i++) {
+            cal += '<tr>';
+            for (var k = 1; k <= 7; k++) {
+                if (i === 1 && k <= theDay || dNum > lastDate) {
+                    cal += '<td> &nbsp; </td>';
+                } else if (dNum === d){
+                    cal += '<td class="today">'+ dNum + '</td>';
+                    dNum++;
+                } else {
+                    cal += '<td>'+ dNum + '</td>';
+                    dNum++;
+                }
+            }
+            cal += '</tr>';
+        }
+        make.innerHTML += cal;
+        
+        function allCal(la,ea,ou,ab){
+            var event = la + ea + ou;
+            if (event >= 3) {
+                event = event / 3;
+                event = Math.floor(event);
+                val1 = {{ dayinfo.unit }} - ab - event;
+                val2 = {{ dayinfo.limit }} - ab - event;
+            } else {
+                val1 = {{ dayinfo.unit }} - ab;
+                val2 = {{ dayinfo.limit }} - ab;
+            }
+            checkDay.textContent = val1
+            checkMoney1.textContent = (val2 * 10000) + (val2 * 5800) + '원';
+            checkMoney2.textContent = (val2 * 15000) + (val2 * 5800) + '원';
+        }
+        
+
+
+        function EveCount(para) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    ev1 = document.getElementById('event1')
+                    ev2 = document.getElementById('event2')
+                    ev3 = document.getElementById('event3')
+                    ev4 = document.getElementById('event4')
+                    var obj = JSON.parse(this.responseText);
+                    if (obj)
+                }
+            };
+            xhttp.open('GET', '{% url 'ajaxcheck' %}?eve='+para, true);
+            xhttp.send()
+        }
+    </script>
+</body>
+</html>

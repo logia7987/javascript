@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>객체사용</title>
+<style>
+    .csoon {
+        background-color: chartreuse;
+    }
+</style>
+</head>
+<body>
+
+    <script>
+        var mytodo = [{
+            'todo' : '디자인',
+            'due' : '11/20',
+            'priority' : '1',
+            'memo' : '사진 변경'
+        }, {
+            'todo' : '비행기 표',
+            'due' : '11/22',
+            'priority' : '3',
+            'memo' : ''
+        }, {
+            'todo' : '디자인',
+            'due' : '12/1',
+            'priority' : '2',
+            'memo' : '다른 책 빌리기'
+        }, {
+            'todo' : '친구만나기',
+            'due' : '3/8',
+            'priority' : '2',
+            'memo' : '커피달라고 앵앵'
+        }, {
+            'todo' : '도서 반납',
+            'due' : '3/9',
+            'priority' : '2',
+            'memo' : '칭기즈칸의 뭐뭐'
+        }]
+        var mytodotable = '';
+        mytodotable += "<table>";
+        mytodotable += "<tr>"
+        mytodotable += "<th>순번</th><th>Todo</th><th>due</th><th>priority</th><th>memo</th><th>D-Day</th>"
+        mytodotable += "</tr>"
+        var mylen = mytodo.length;
+        for ( var i = 0; mylen > i; i++ ) {
+            var getDdayRes = getDday(i);
+            if (mytodo[i]['priority'] === '1' || getDdayRes ==='Soon') {
+                mytodotable += "<tr class='csoon'>";
+            } else {
+                mytodotable += "<tr>";
+            }
+            mytodotable += "<td>"+(i+1)+'</td>';
+            mytodotable += "<td>"+mytodo[i]['todo']+'</td>';
+            mytodotable += "<td>"+mytodo[i]['due']+'</td>';
+            mytodotable += "<td>"+mytodo[i]['priority']+'</td>';
+            mytodotable += "<td>"+mytodo[i]['memo']+'</td>';
+            mytodotable += "<td>"+ getDdayRes +'</td>';
+            mytodotable += "</tr>"
+        }
+        mytodotable += "</table>";
+        // 화면에적용
+        // p요소에 정보를 담을 table 추가
+        var dispElem = document.createElement('P');
+        // var textnode = document.createTextNode(mytodotable);
+        // dispElem.appendChild(textnode);
+        dispElem.innerHTML  = mytodotable;
+        // 정보가 담긴 p요소를 body에 추가한다.
+        var bodyElem = document.getElementsByTagName('body')[0];
+        bodyElem.appendChild(dispElem);
+        //날짜 객체
+        function getDday(pa1) {
+            var today, month, day, dueDay, curMise, dueMise, Dday, idx
+            // 현재(페이지를 읽은 시간)의 시간을 구한다
+            today = new Date();
+            curMise = today.getTime();
+            // 목표시간을 구한다
+            dueStr = mytodo[pa1]['due'];
+            idx = dueStr.indexOf('/');
+            month = Number(dueStr.slice(0,idx))-1;           
+            day = dueStr.slice(idx+1,dueStr.length);
+            dueDay = new Date(2018,month,day);
+            dueMise = dueDay.getTime();
+            // 남은 시간을 계산한다.
+            Dday = Math.floor((dueMise - curMise)/(1000*60*60*24));
+            //3항연산자는 (조건)? 참 : 거짓;
+            Dday = (Dday === 0)?'Soon':Dday;
+            // 값을 보여준다.
+            return Dday;
+        }
+    </script>
+</body>
+</html>

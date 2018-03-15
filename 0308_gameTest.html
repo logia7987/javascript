@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myEveRemove(j) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var elem_ev1, elem_ev2, elem_ev3, elem_ev4, obj
+                    elem_ev1 = document.getElementById('event1')
+                    elem_ev2 = document.getElementById('event2')
+                    elem_ev3 = document.getElementById('event3')
+                    elem_ev4 = document.getElementById('event4')
+                    obj = JSON.parse(this.responseText);
+                    if (obj.myEve == 'LA') {
+                    elem_ev2.textContent = obj.myCount
+                    event = obj.myCount+{{earl}}+{{out}} / 3
+                        if ( event >= 3 ) {
+                            event = Math.floor(event) / 3
+                            val ={{ unit.unit }} - {{ absen }} - Math.floor(event)
+                        } else {
+                            val ={{ unit.unit }} - {{ absen }}
+                        }
+                        document.getElementById('unitVal').textContent = val
+                        document.getElementById('moneyVal_1').textContent = (val * 10)+(val * 5.8)+'00'+ '원'
+                        document.getElementById('moneyVal_2').textContent = (val * 15)+(val * 5.8)+'00'+ '원'
+                    } else if (obj.myEve == 'EA') {
+                    elem_ev3.textContent = obj.myCount
+                    event = {{late}}+obj.myCount+{{out}} / 3
+                        if ( event >= 3 ) {
+                            event = Math.floor(event) / 3
+                            val ={{ unit.unit }} - {{ absen }} - Math.floor(event)
+                        } else {
+                            val ={{ unit.unit }} - {{ absen }}
+                        }
+                        document.getElementById('unitVal').textContent = val
+                        document.getElementById('moneyVal_1').textContent = (val * 10)+(val * 5.8)+'00'+ '원'
+                        document.getElementById('moneyVal_2').textContent = (val * 15)+(val * 5.8)+'00'+ '원'
+                    } else if (obj.myEve == 'AB') {
+                    elem_ev1.textContent = obj.myCount
+                    event = {{late}}+{{earl}}+{{out}} / 3
+                        if ( event >= 3 ) {
+                            event = Math.floor(event) / 3
+                            val ={{ unit.unit }} - obj.myCount - Math.floor(event)
+                        } else {
+                            val ={{ unit.unit }} - obj.myCount
+                        }
+                        document.getElementById('unitVal').textContent = val
+                        document.getElementById('moneyVal_1').textContent = (val * 10)+(val * 5.8)+'00'+ '원'
+                        document.getElementById('moneyVal_2').textContent = (val * 15)+(val * 5.8)+'00'+ '원'
+                    } else if (obj.myEve == 'OU') {
+                    elem_ev4.textContent = obj.myCount
+                    event = {{late}}+{{earl}}+obj.myCount / 3
+                        if ( event >= 3 ) {
+                            event = Math.floor(event) / 3
+                            val ={{ unit.unit }} - {{ absen }} - Math.floor(event)
+                        } else {
+                            val ={{ unit.unit }} - {{ absen }}
+                        }
+                        document.getElementById('unitVal').textContent = val
+                        document.getElementById('moneyVal_1').textContent = (val * 10)+(val * 5.8)+'00'+ '원'
+                        document.getElementById('moneyVal_2').textContent = (val * 15)+(val * 5.8)+'00'+ '원'
+                }
+            }
+            xhttp.open("GET", "{% url 'ajaxremoveevent' %}?reve=" + j, true);
+            xhttp.send();
+        }
+
+document.getElementById('unitVal').textContent = val
+document.getElementById('moneyVal_1').textContent = (val * 10)+(val * 5.8)+'00'+ '원'
+document.getElementById('moneyVal_2').textContent = (val * 15)+(val * 5.8)+'00'+ '원'
+    </script>
+</body>
+
+</html>
